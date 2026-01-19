@@ -1,0 +1,307 @@
+
+.block4 {
+  width: 100%;
+  height: 800px;
+  background: linear-gradient(135deg, #fff9f4, #fff3e6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.reservation {
+  max-width: 1250px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.image-wrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(-20px);
+}
+
+.ring-outer {
+  position: absolute;
+  width: 540px;
+  height: 540px;
+  border-radius: 50%;
+  border: 2px dashed #ecdac8;
+  animation: rotate 18s linear infinite;
+}
+
+.ring-inner {
+  position: absolute;
+  width: 430px;
+  height: 430px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f8eade, #f4dfd2);
+  filter: blur(1px);
+}
+
+.main-photo {
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+  transition: 0.4s ease;
+}
+
+.main-photo:hover {
+  transform: scale(1.04);
+}
+
+.main-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.small {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: absolute;
+  border: 5px solid #ffe0ba;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  z-index: 4;
+  transition: 0.3s ease;
+}
+
+.small:hover {
+  transform: scale(1.1);
+}
+
+.small img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.small-top {
+  top: -25px;
+  right: -30px;
+  animation: float 4s ease-in-out infinite;
+}
+
+.small-bottom {
+  bottom: 25px;
+  left: -40px;
+  animation: float 5s ease-in-out infinite;
+}
+
+.text-content {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.text-content h2 {
+  font-size: 56px;
+  font-family: "Georgia", serif;
+  color: #2a1c0f;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.text-content h2 span {
+  color: #ff8c00;
+}
+
+.text-content p {
+  margin-top: 24px;
+  max-width: 420px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #6c5b4b;
+}
+
+.reserve-btn1 {
+  margin-top: 45px;
+  padding: 15px 50px;
+  background: linear-gradient(135deg, #ff9900, #ff7a00);
+  border: none;
+  border-radius: 35px;
+  color: white;
+  font-size: 17px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(255, 136, 0, 0.4);
+  transition: 0.3s ease;
+}
+
+.reserve-btn1:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(255, 120, 0, 0.55);
+}
+
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+
+
+
+
+@media (max-width: 992px) {
+  .block4 {
+    height: auto;
+    padding: 50px 20px;
+  }
+
+  .reservation {
+    flex-direction: column;
+    gap: 40px;
+    padding: 0;
+    text-align: center;
+  }
+
+  .image-wrapper {
+    transform: translateX(0);
+  }
+
+  .main-photo {
+    width: 300px;
+    height: 300px;
+  }
+
+  .ring-outer {
+    width: 400px;
+    height: 400px;
+  }
+
+  .ring-inner {
+    width: 320px;
+    height: 320px;
+  }
+
+  .small {
+    width: 75px;
+    height: 75px;
+  }
+
+  .text-content {
+    padding-right: 0;
+  }
+
+  .text-content h2 {
+    font-size: 46px;
+  }
+
+  .text-content p {
+    font-size: 16px;
+    max-width: 100%;
+    margin: 20px auto 0;
+  }
+
+  .reserve-btn1 {
+    padding: 12px 40px;
+    font-size: 16px;
+    margin-top: 35px;
+  }
+}
+
+@media (max-width: 768px) {
+  .block4 {
+    padding: 40px 15px;
+  }
+
+  .reservation {
+    gap: 30px;
+  }
+
+  .main-photo {
+    width: 250px;
+    height: 250px;
+  }
+
+  .ring-outer {
+    width: 320px;
+    height: 320px;
+  }
+
+  .ring-inner {
+    width: 260px;
+    height: 260px;
+  }
+
+  .small {
+    width: 60px;
+    height: 60px;
+  }
+
+  .text-content h2 {
+    font-size: 36px;
+  }
+
+  .text-content p {
+    font-size: 15px;
+  }
+
+  .reserve-btn1 {
+    padding: 10px 35px;
+    font-size: 15px;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .block4 {
+    padding: 30px 10px;
+  }
+
+  .reservation {
+    gap: 25px;
+  }
+
+  .main-photo {
+    width: 200px;
+    height: 200px;
+  }
+
+  .ring-outer {
+    width: 250px;
+    height: 250px;
+  }
+
+  .ring-inner {
+    width: 200px;
+    height: 200px;
+  }
+
+  .small {
+    width: 50px;
+    height: 50px;
+  }
+
+  .text-content h2 {
+    font-size: 28px;
+  }
+
+  .text-content p {
+    font-size: 14px;
+    margin-top: 15px;
+  }
+
+  .reserve-btn1 {
+    padding: 8px 30px;
+    font-size: 14px;
+    margin-top: 25px;
+  }
+}

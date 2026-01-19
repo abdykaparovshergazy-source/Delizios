@@ -1,0 +1,161 @@
+.about2 {
+  display: flex;
+  gap: 190px;
+  align-items: center;
+  padding: 90px 140px;
+  padding-left: 150px;
+}
+
+.left img {
+  width: 460px;
+  height: 670px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+.right {
+  max-width: 580px;
+}
+
+.right h2 {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: 1.5px;  
+  color: #2c1a00;
+  margin-bottom: 24px;
+}
+
+.right h2 span {
+  color: #ff8c00;
+}
+
+.name {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1.2px;  
+  margin-bottom: 36px;
+}
+
+.quote-box p {
+  color: #7e7e7e;
+  font-size: 24px;
+  line-height: 1.9;
+  letter-spacing: 0.7px; 
+  margin: 26px 0;
+}
+
+.quote-icon {
+  font-size: 60px;
+  color: #ffcf97;
+  font-weight: 900;
+  line-height: 0.6;
+  letter-spacing: 2px;     
+}
+
+.quote-icon.end {
+  text-align: right;
+}
+
+
+
+/* =========================
+   📱 Tablet (≤992px)
+========================= */
+@media (max-width: 992px) {
+  .about2 {
+    flex-direction: column;
+    gap: 40px;
+    padding: 60px 80px;
+    padding-left: 80px;
+  }
+
+  .left img {
+    width: 360px;
+    height: 520px;
+  }
+
+  .right {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .right h2 {
+    font-size: 50px;
+  }
+
+  .name {
+    font-size: 28px;
+  }
+
+  .quote-box p {
+    font-size: 20px;
+  }
+
+  .quote-icon {
+    font-size: 50px;
+  }
+}
+
+/* =========================
+   📱 Phone (≤768px)
+========================= */
+@media (max-width: 768px) {
+  .about2 {
+    padding: 40px 20px;
+  }
+
+  .left img {
+    width: 280px;
+    height: 400px;
+  }
+
+  .right h2 {
+    font-size: 38px;
+  }
+
+  .name {
+    font-size: 24px;
+  }
+
+  .quote-box p {
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  .quote-icon {
+    font-size: 40px;
+  }
+}
+
+/* =========================
+   📱 Small phone (≤480px)
+========================= */
+@media (max-width: 480px) {
+  .about2 {
+    padding: 30px 10px;
+  }
+
+  .left img {
+    width: 220px;
+    height: 320px;
+  }
+
+  .right h2 {
+    font-size: 32px;
+  }
+
+  .name {
+    font-size: 20px;
+  }
+
+  .quote-box p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .quote-icon {
+    font-size: 36px;
+  }
+}

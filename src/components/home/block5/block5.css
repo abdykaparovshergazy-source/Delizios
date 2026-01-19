@@ -1,0 +1,342 @@
+.block5 {
+    height: 1100px;
+    text-align: center;
+    padding: 60px 0;
+    font-family: Arial, sans-serif;
+}
+
+.chef-title {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 50px;
+    color: #3b2a1e;
+    padding-top: 110px;
+}
+
+.chef-cards {
+    display: flex;
+    justify-content: center;
+    gap: 140px;
+    margin-bottom: 50px;
+    padding-right: 90px;
+}
+
+.chef-card {
+    width: 260px;
+    padding: 20px 0; 
+    border-radius: 20px;
+}
+
+.chef-img {
+    width: 100%;
+    height: 330px;
+    border-radius: 20px;
+    background-size: cover;
+    /* background-position: center; */
+    margin-bottom: 20px;
+    padding-top: 100px;
+}
+.img{
+    background-color: rgb(215, 215, 215);
+    border-radius: 45px;
+}
+
+.chef-card h3 {
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    padding-top: 200px;
+    margin-left: 10px;
+}
+
+.chef-card p {
+    color: gray;
+    font-size: 20px;
+    padding-top: 20px;
+    margin-left: 20px;
+}
+
+.view-btn {
+    width: 200px;
+    height: 55px;
+    margin-left: -85px;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    background: orange;
+    color: white;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.view-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(255, 120, 0, 0.55);
+}
+
+.chef-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3); 
+  z-index: 999;
+}
+
+.chef-modal {
+  position: absolute;
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 20px;
+  width: 450px;         
+  max-width: 90%;
+  height: auto;         
+  max-height: 250px;        
+  overflow-y: auto;         
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  text-align: left;
+  z-index: 1000;
+  transform: translate(110%, -50%);
+}
+
+.chef-modal img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  float: left;
+  margin-right: 20px;
+}
+
+.chef-modal h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.chef-modal h4 {
+  margin: 5px 0;
+  color: #ff7f50;
+}
+
+.chef-modal p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+.chef-modal .close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #ff4b2b;
+}
+
+
+
+
+/* =========================
+   📱 Tablet (≤992px)
+========================= */
+@media (max-width: 992px) {
+  .block5 {
+    height: auto;
+    padding: 50px 0;
+  }
+
+  .chef-title {
+    font-size: 36px;
+    padding-top: 50px;
+    margin-bottom: 40px;
+  }
+
+  .chef-cards {
+    flex-direction: column;
+    gap: 50px;
+    padding-right: 0;
+    align-items: center;
+  }
+
+  .chef-card {
+    width: 80%;
+    max-width: 300px;
+    padding: 15px 0;
+  }
+
+  .chef-img {
+    height: 250px;
+    padding-top: 60px;
+  }
+
+  .chef-card h3 {
+    font-size: 22px;
+    padding-top: 200px;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .chef-card p {
+    font-size: 18px;
+    margin-left: 0;
+    text-align: center;
+    padding-top: 10px;
+  }
+
+  .view-btn {
+    width: 180px;
+    height: 50px;
+    font-size: 15px;
+    padding: 10px 30px;
+    margin-left: 0;
+  }
+
+  .chef-modal {
+    width: 90%;
+    max-width: 400px;
+    transform: translate(-50%, -50%);
+    left: 50% !important;
+    top: 50% !important;
+  }
+}
+
+/* =========================
+   📱 Phone (≤768px)
+========================= */
+@media (max-width: 768px) {
+  .block5 {
+    padding: 40px 0;
+  }
+
+  .chef-title {
+    font-size: 32px;
+    padding-top: 40px;
+    margin-bottom: 35px;
+  }
+
+  .chef-cards {
+    gap: 40px;
+  }
+
+  .chef-card {
+    width: 90%;
+    max-width: 280px;
+  }
+
+  .chef-img {
+    height: 200px;
+    padding-top: 40px;
+  }
+
+  .chef-card h3 {
+    font-size: 20px;
+    padding-top: 150px;
+  }
+
+  .chef-card p {
+    font-size: 16px;
+    padding-top: 8px;
+  }
+
+  .view-btn {
+    width: 160px;
+    height: 45px;
+    font-size: 14px;
+    margin-left: 0;
+  }
+
+  .chef-modal {
+    width: 85%;
+    max-width: 350px;
+    padding: 20px 25px;
+    max-height: 80vh;
+  }
+
+  .chef-modal img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .chef-modal h2 {
+    font-size: 1.3rem;
+  }
+
+  .chef-modal h4 {
+    font-size: 1rem;
+  }
+
+  .chef-modal p {
+    font-size: 0.85rem;
+  }
+}
+
+/* =========================
+   📱 Small phone (≤480px)
+========================= */
+@media (max-width: 480px) {
+  .block5 {
+    padding: 30px 0;
+  }
+
+  .chef-title {
+    font-size: 28px;
+    padding-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .chef-cards {
+    gap: 30px;
+  }
+
+  .chef-card {
+    width: 95%;
+    max-width: 260px;
+  }
+
+  .chef-img {
+    height: 160px;
+    padding-top: 30px;
+  }
+
+  .chef-card h3 {
+    font-size: 18px;
+    padding-top: 120px;
+  }
+
+  .chef-card p {
+    font-size: 14px;
+    padding-top: 6px;
+  }
+
+  .view-btn {
+    width: 140px;
+    height: 40px;
+    font-size: 13px;
+    margin-left: 0;
+  }
+
+  .chef-modal {
+    width: 90%;
+    max-width: 320px;
+    padding: 18px 20px;
+    max-height: 75vh;
+  }
+
+  .chef-modal img {
+    width: 70px;
+    height: 70px;
+    margin-right: 15px;
+  }
+
+  .chef-modal h2 {
+    font-size: 1.2rem;
+  }
+
+  .chef-modal h4 {
+    font-size: 0.9rem;
+  }
+
+  .chef-modal p {
+    font-size: 0.8rem;
+  }
+}

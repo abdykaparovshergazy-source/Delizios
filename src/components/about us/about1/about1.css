@@ -1,0 +1,231 @@
+.about {
+    width: 100%;
+    height: 1550px;
+    /* padding: 130px 130px; */
+}
+
+.block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 90px;
+    padding-left: 20px;
+    margin-bottom: -100px;
+    padding-left: -100px;
+}
+
+.double-circle {
+    position: relative;
+    width: 650px;
+    height: 650px;
+    border-radius: 50%;
+    background: #f7f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.double-circle::before {
+    content: "";
+    position: absolute;
+    width: 510px;
+    height: 510px;
+    border-radius: 50%;
+    background: #e6e5e5;
+    z-index: 1;
+}
+
+.circle-img {
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.circle-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.text-box {
+    max-width: 500px;
+}
+
+.text-box1 {
+    max-width: 500px;
+    padding-left: 90px;
+    color: #111111;
+    line-height: 1.8;
+    font-size: 20px;
+}
+
+.text-box h2 {
+    font-size: 58px;
+    font-weight: 700;
+    margin-bottom: 22px;
+    line-height: 1.05;
+}
+
+.text-box h2 span {
+    color: #ff8c00;
+}
+
+.text-box p {
+    color: #111111;
+    line-height: 1.8;
+    font-size: 20px;
+    padding-right: 90px;
+}
+
+
+
+/* =========================
+   📱 Tablet (≤992px)
+========================= */
+@media (max-width: 992px) {
+
+  .block {
+    gap: 40px;
+  }
+
+  .double-circle {
+    width: 520px;
+    height: 520px;
+  }
+
+  .double-circle::before {
+    width: 420px;
+    height: 420px;
+  }
+
+  .circle-img {
+    width: 320px;
+    height: 320px;
+  }
+
+  .text-box h2 {
+    font-size: 46px;
+  }
+}
+
+/* =========================
+   📱 Phone (≤768px)
+========================= */
+@media (max-width: 768px) {
+
+  .about {
+    height: auto;
+  }
+
+  .block {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+    margin-bottom: 0;
+  }
+
+  .double-circle {
+    width: 360px;
+    height: 360px;
+  }
+
+  .double-circle::before {
+    width: 280px;
+    height: 280px;
+  }
+
+  .circle-img {
+    width: 220px;
+    height: 220px;
+  }
+
+  .text-box,
+  .text-box1 {
+    max-width: 100%;
+    padding-left: 0;
+  }
+
+  .text-box h2 {
+    font-size: 34px;
+  }
+
+  .text-box p {
+    padding-right: 0;
+    font-size: 16px;
+  }
+}
+
+/* =========================
+   📱 Small phone (≤480px)
+========================= */
+@media (max-width: 480px) {
+
+  .double-circle {
+    width: 280px;
+    height: 280px;
+  }
+
+  .double-circle::before {
+    width: 210px;
+    height: 210px;
+  }
+
+  .circle-img {
+    width: 170px;
+    height: 170px;
+  }
+
+  .text-box h2 {
+    font-size: 28px;
+  }
+
+  .text-box p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}
+
+
+
+/* Floating анимация сүрөт үчүн */
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-15px) rotate(5deg) scale(1.02);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+}
+
+/* Scale pulse анимация */
+@keyframes scalePulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+}
+
+/* Жаңы стилдер сүрөттөргө */
+.double-circle .circle-img {
+  animation: float 6s ease-in-out infinite, scalePulse 6s ease-in-out infinite;
+}
+
+.double-circle .circle-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: float 6s ease-in-out infinite;
+}

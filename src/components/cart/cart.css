@@ -1,0 +1,456 @@
+.cart-overlay {
+  position: fixed;
+  inset: 0; /* top:0; left:0; right:0; bottom:0 */
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+
+.cart-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;      /* эч качан экрандан чоң болбосун */
+  overflow-y: auto;      /* модалдын ичинде скролл пайда болот */
+  background: #fff;
+  border-radius: 20px;
+  padding: 30px;
+  z-index: 1001;
+}
+
+
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.cart-header .close {
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.cart-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-img1 {
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+}
+
+.cart-img1 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.cart-info {
+  flex: 1;
+}
+
+.cart-info h3 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+}
+
+.cart-price {
+  font-size: 18px;
+  color: #333;
+  font-weight: 600;
+}
+
+.cart-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.cart-actions button {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  background: #eee;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.cart-actions span {
+  font-size: 16px;
+}
+
+.cart-remove {
+  cursor: pointer;
+  font-size: 22px;
+  color: red;
+}
+
+.cart-footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkout-btn {
+  background: #ff9800;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Order Confirmed модал */
+.order-confirmed {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #d4edda;
+  color: #155724;
+  padding: 25px 35px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  animation: fadeInOut 3s forwards;
+  font-size: 18px;
+}
+
+/* =========================
+   Tablet (≤992px)
+========================= */
+@media (max-width: 992px) {
+  .cart-modal {
+    width: 500px;
+    padding: 24px;
+  }
+
+  .cart-card {
+    gap: 16px;
+    padding: 12px 0;
+  }
+
+  .cart-img1 {
+    width: 80px;
+    height: 80px;
+  }
+
+  .cart-info h3 {
+    font-size: 18px;
+  }
+
+  .cart-price {
+    font-size: 16px;
+  }
+
+  .cart-actions button {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+
+  .cart-actions span {
+    font-size: 14px;
+  }
+
+  .cart-remove {
+    font-size: 20px;
+  }
+
+  .checkout-btn {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .order-confirmed {
+    padding: 20px 30px;
+    font-size: 16px;
+  }
+}
+
+/* =========================
+   Phone (≤768px)
+========================= */
+@media (max-width: 768px) {
+  .cart-modal {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .cart-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cart-img1 {
+    width: 100%;
+    height: auto;
+  }
+
+  .cart-info {
+    width: 100%;
+  }
+
+  .cart-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .checkout-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* =========================
+   Small phone (≤480px)
+========================= */
+@media (max-width: 480px) {
+  .cart-modal {
+    width: 95%;
+    padding: 16px;
+  }
+
+  .cart-header .close {
+    font-size: 20px;
+  }
+
+  .cart-card {
+    gap: 12px;
+    padding: 10px 0;
+  }
+
+  .cart-info h3 {
+    font-size: 16px;
+  }
+
+  .cart-price {
+    font-size: 14px;
+  }
+
+  .cart-actions button {
+    width: 26px;
+    height: 26px;
+    font-size: 14px;
+  }
+
+  .cart-actions span {
+    font-size: 13px;
+  }
+
+  .cart-remove {
+    font-size: 18px;
+  }
+
+  .checkout-btn {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .order-confirmed {
+    padding: 16px 24px;
+    font-size: 14px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Checkout формасы */
+.checkout-form {
+  margin-top: 20px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 15px;
+}
+
+.checkout-form h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #555;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #ff9800;
+  box-shadow: 0 0 0 2px rgba(255, 152, 0, 0.2);
+}
+
+.checkout-form-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.back-btn {
+  flex: 1;
+  padding: 12px;
+  background: #f0f0f0;
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.back-btn:hover {
+  background: #e0e0e0;
+}
+
+.confirm-order-btn {
+  flex: 2;
+  padding: 12px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.confirm-order-btn:hover {
+  background: #45a049;
+}
+
+/* Респонсив стилдерди кошуңуз */
+@media (max-width: 768px) {
+  .checkout-form {
+    padding: 16px;
+  }
+  
+  .checkout-form-buttons {
+    flex-direction: column;
+  }
+  
+  .back-btn,
+  .confirm-order-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-form {
+    padding: 12px;
+  }
+  
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 10px;
+    font-size: 13px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.login-prompt {
+  text-align: center;
+  margin-top: 10px;
+  color: #666;
+  font-size: 12px;
+}
+
+.login-prompt small {
+  display: block;
+}
+
+
+.field-note {
+  display: block;
+  margin-top: 4px;
+  color: #666;
+  font-size: 12px;
+}
+
+
+.checkout-btn.logged-in {
+  background: #4CAF50;
+}
+
+.form-group input:disabled {
+  background-color: #f5f5f5;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.user-checkout-info {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border-left: 4px solid #4CAF50;
+}
+
+.user-checkout-info p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.user-checkout-info strong {
+  color: #333;
+}

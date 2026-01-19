@@ -1,0 +1,619 @@
+.header {
+  position: sticky; /* же fixed, каалаганыңды танда */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* башка элементтердин үстүндө болуу үчүн */
+  background-color: white; /* фонду көрсөтүү, оригинал менен дал келтирүү */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* кичине көлөкө кошуу */
+  max-width: 1600px;
+  margin: auto;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  font-family: Arial, sans-serif;
+}
+
+.logo {
+  padding-left: 80px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.circle {
+  width: 45px;
+  height: 45px;
+  background: orange;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.logo h2 {
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.logo h2 span {
+  color: orange;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 80px;
+  list-style: none;
+  font-size: 14px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #444;
+  transition: color 0.3s;
+}
+
+.nav-links li a:hover,
+.nav-links li a:focus {
+  color: orange;
+}
+
+/* Mobile Menu Toggle Button */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 25px;
+  height: 20px;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #333;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+.right-block {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-right: 80px;
+}
+
+.cart-box {
+  position: relative;
+  /* background: #f6f6f6; */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-icon {
+  font-size: 20px;
+  color: #333;
+}
+
+.badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: red;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+.login-btn {
+  background: #2ea538;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.login-btn:hover {
+  background: #248a2e;
+}
+
+
+@media (max-width: 992px) {
+  .header {
+    height: 90px;
+    padding: 0 30px;
+  }
+
+  .logo {
+    padding-left: 40px;
+    gap: 15px;
+  }
+
+  .circle {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .logo h2 {
+    font-size: 18px;
+  }
+
+  .nav-links {
+    gap: 40px;
+    font-size: 13px;
+  }
+
+  .right-block {
+    gap: 15px;
+    padding-right: 40px;
+  }
+
+  .login-btn {
+    padding: 8px 20px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 80px;
+    padding: 15px 20px;
+    position: relative;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+    order: 2;
+  }
+
+  .logo {
+    padding-left: 0;
+    gap: 10px;
+    order: 1;
+    flex: 1;
+  }
+
+  .right-block {
+    padding-right: 0;
+    gap: 10px;
+    order: 3;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    gap: 15px;
+    margin-top: 0;
+    width: 100%;
+    z-index: 999;
+  }
+
+  .nav-links.mobile-open {
+    display: flex;
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links li a {
+    display: block;
+    padding: 12px 0;
+    font-size: 16px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .nav-links li:last-child a {
+    border-bottom: none;
+  }
+
+  .circle {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+
+  .logo h2 {
+    font-size: 16px;
+  }
+
+  .login-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 12px 15px;
+    min-height: 70px;
+  }
+
+  .logo {
+    gap: 8px;
+  }
+
+  .circle {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+
+  .logo h2 {
+    font-size: 14px;
+  }
+
+  .nav-links {
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .nav-links li a {
+    font-size: 15px;
+    padding: 10px 0;
+  }
+
+  .right-block {
+    gap: 8px;
+  }
+
+  .cart-img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .user-profile-header {
+    padding: 4px 6px;
+    gap: 6px;
+  }
+
+  .user-avatar-header {
+    width: 28px;
+    height: 28px;
+  }
+
+  .user-name-header {
+    font-size: 12px;
+    max-width: 50px;
+  }
+
+  .logout-btn-header {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+
+  .login-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Колдонуучу профили үчүн стилдер */
+.user-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 10px;
+  padding: 5px 10px;
+  background: #f8f9fa;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+}
+
+.user-avatar-header {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-name-header {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.logout-btn-header {
+  background: #ff4444;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.logout-btn-header:hover {
+  background: #cc0000;
+}
+
+/* Right block үчүн флекс стили */
+.right-block {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Логин кнопкасы үчүн стилдер */
+.login-btn {
+  background: #ff9800;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.login-btn:hover {
+  background: #f57c00;
+}
+
+
+.cart-box {
+  position: relative;
+  cursor: pointer;
+}
+
+.cart-img {
+  width: 30px;
+  height: 30px;
+}
+
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ff4444;
+  color: white;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* header.css файлына кошуңуз */
+
+/* User profile header стилдери */
+.user-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+  border-radius: 25px;
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.user-profile-header:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Аватар стилдери */
+.user-avatar-header {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ff8a00;
+}
+
+/* Инициалдар үчүн аватар стили */
+.avatar-circle-initials {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ff8a00;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+  border: 2px solid #ff8a00;
+}
+
+/* Колдонуучунун аты */
+.user-name-header {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+  white-space: nowrap;
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Logout баскычы */
+.logout-btn-header {
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+}
+
+.logout-btn-header:hover {
+  background-color: #cc0000;
+  transform: translateY(-1px);
+}
+
+/* Log in баскычы */
+.login-btn {
+  background-color: #ff8a00;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #e67a00;
+}
+
+/* Right block - cart and user */
+.right-block {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cart-box {
+  position: relative;
+  cursor: pointer;
+}
+
+.cart-img {
+  width: 30px;
+  height: 30px;
+}
+
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #ff4444;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Responsive стилдер */
+@media (max-width: 768px) {
+  .user-profile-header {
+    padding: 5px 8px;
+    gap: 8px;
+  }
+  
+  .user-name-header {
+    max-width: 60px;
+    font-size: 12px;
+  }
+  
+  .logout-btn-header {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+  
+  .avatar-circle-initials,
+  .user-avatar-header {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-name-header {
+    display: none; /* Кичинекей экрандарда атын жашыруу */
+  }
+  
+  .user-profile-header {
+    gap: 5px;
+    padding: 5px;
+  }
+}

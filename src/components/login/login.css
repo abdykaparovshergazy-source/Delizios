@@ -1,0 +1,927 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Trebuchet MS', 'Lucida Sans', Arial, sans-serif;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 1000;
+  overflow-y: auto; 
+}
+
+.modal-box.large-modal {
+  width: 1000px;
+  max-width: 95%;
+  height: auto;
+  max-height: 90vh;
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  z-index: 1001;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: transparent;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 11;
+}
+
+.login-container {
+  width: 100%;
+  display: flex;
+  height: 100%;
+}
+
+.login-left {
+  width: 50%;
+  padding: 60px 70px;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #ff8a00;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.login-left h1 {
+  font-size: 38px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.signup-text {
+  color: rgb(120, 120, 120);
+  margin-bottom: 30px;
+}
+
+.signup-text span {
+  color: #0099ff;
+  cursor: pointer;
+}
+
+.login-left label {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+
+.login-left input[type="email"],
+.clean-input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 6px;
+  border: none;       
+  outline: none;     
+  background: #f7f7f7;
+  margin-bottom: 5px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+/* Бул башкы password-wrapper жана input стилдери */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.password-input {
+  width: 100%;
+  padding: 14px 45px 14px 14px; /* Оң жагына кененирээк орун */
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  background: #f7f7f7;
+  font-size: 15px;
+  box-sizing: border-box;
+  font-family: inherit;
+  /* Кепилдик үчүн default жараялы */
+  -webkit-text-security: disc;
+}
+
+.password-input:not([type="password"]) {
+  -webkit-text-security: none;
+}
+
+/* toggle button */
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2; /* Инпутун үстүнө чыгуу үчүн */
+}
+
+/* SVG icon */
+.eye-icon {
+  width: 20px;
+  height: 20px;
+  stroke: #4b4b4b;
+  fill: transparent;
+  transition: stroke 0.2s ease;
+}
+
+.toggle-password:hover .eye-icon {
+  stroke: #ff8a00;
+}
+
+/* show классу кошулганда */
+.toggle-password.show .eye-icon {
+  stroke: #ff8a00;
+}
+
+.options {
+  margin-top: 10px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #555;
+}
+
+.options span {
+  margin-left: 6px;
+}
+
+.options a {
+  color: #0099ff;
+  font-size: 14px;
+}
+
+.login-btn1 {
+  width: 100%;
+  padding: 14px 0;
+  background: #ff8a00;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.login-btn1:hover {
+  background: #e67e00;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.google-login-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.google-btn {
+  width: 100%;
+  padding: 14px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.google-btn img {
+  width: 22px;
+}
+
+.copyright {
+  margin-top: auto;
+  color: #b4b4b4;
+  font-size: 13px;
+  padding-top: 5px;
+  margin: auto;
+}
+
+.login-right {
+  width: 50%;
+  height: 100%;
+}
+
+.login-right img {
+  width: 100%;
+  height: 656px;
+  max-height: 656px;
+  object-fit: cover;
+}
+
+
+.hidden-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.arrow.rotate {
+  transform: rotate(180deg);
+}
+
+.alert-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+}
+
+.alert-box {
+  width: 320px;
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.alert-box.success {
+  border-top: 5px solid #4caf50;
+}
+
+.alert-box.error {
+  border-top: 5px solid #f44336;
+}
+
+.alert-box.info {
+  border-top: 5px solid #2196f3;
+}
+
+.alert-box p {
+  font-size: 16px;
+}
+
+.alert-box button {
+  margin-top: 15px;
+  padding: 8px 25px;
+  background: #ff8a00;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.alert-box button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.forget {
+  color: #0099ff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.forget:hover {
+  color: #007acc;
+  text-decoration: underline;
+}
+
+.signup-text span {
+  color: #0099ff;
+  cursor: pointer;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.signup-text span:hover {
+  color: #007acc;
+  text-decoration: underline;
+}
+
+/* Кошумча стилдер */
+.user-profile-section {
+  width: 100%;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #e9ecef;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ff8a00;
+}
+
+.user-details h3 {
+  margin: 0;
+  color: #333;
+  font-size: 18px;
+}
+
+.user-details p {
+  margin: 5px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.user-details small {
+  color: #888;
+  font-size: 12px;
+}
+
+.logout-btn {
+  width: 100%;
+  padding: 12px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #c82333;
+  transform: translateY(-2px);
+}
+
+/* Туташтырылган учурда форманы жашыруу */
+.login-left:has(.user-profile-section) .login-form {
+  display: none;
+}
+
+/* Анимациялар */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-box {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.alert-box {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Responsive стилдер */
+@media (max-width: 768px) {
+  .modal-box.large-modal {
+    flex-direction: column;
+    width: 95%;
+  }
+  
+  .login-left,
+  .login-right {
+    width: 100%;
+  }
+  
+  .login-left {
+    padding: 40px 30px;
+  }
+  
+  .login-right img {
+    height: 300px;
+    max-height: 300px;
+  }
+  
+  .user-info {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .user-avatar {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* login.css файлына кошуңуз */
+
+/* Профиль бөлүмүнүн стилдери */
+.user-profile-section {
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* Чоң аватар (сүрөт) */
+.user-avatar-large {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 4px solid #ff8a00;
+  box-shadow: 0 4px 15px rgba(255, 138, 0, 0.2);
+}
+
+/* Чоң аватар (инициалдар) */
+.user-avatar-large-initials {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff8a00, #ff5500);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  border: 4px solid #ff8a00;
+  box-shadow: 0 4px 15px rgba(255, 138, 0, 0.2);
+}
+
+.user-details {
+  width: 100%;
+}
+
+.user-name-profile {
+  margin: 0 0 8px 0;
+  color: #333;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.user-email-profile {
+  margin: 0 0 10px 0;
+  color: #666;
+  font-size: 16px;
+}
+
+.login-method {
+  color: #888;
+  font-size: 14px;
+  background-color: #f8f8f8;
+  padding: 4px 12px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+/* Профиль аракеттери */
+.profile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.profile-action-btn {
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  padding: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s;
+  text-align: center;
+  color: #333;
+}
+
+.profile-action-btn:hover {
+  background-color: #f0f0f0;
+  border-color: #ff8a00;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.logout-btn-profile {
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s;
+  margin-top: 10px;
+}
+
+.logout-btn-profile:hover {
+  background-color: #cc0000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 68, 68, 0.2);
+}
+
+.back-to-login-btn {
+  background-color: transparent;
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #666;
+  transition: all 0.3s;
+}
+
+.back-to-login-btn:hover {
+  background-color: #f9f9f9;
+  border-color: #999;
+}
+
+/* Логин формасынын кошумча стилдери */
+.login-title {
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 32px;
+}
+
+.input-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-weight: 500;
+  text-align: left;
+  width: 100%;
+}
+
+.clean-input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.clean-input:focus {
+  outline: none;
+  border-color: #ff8a00;
+  box-shadow: 0 0 0 2px rgba(255, 138, 0, 0.1);
+}
+
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+}
+
+.remember-label {
+  margin-left: 8px;
+  cursor: pointer;
+  color: #555;
+}
+
+.forgot-password {
+  color: #ff8a00;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.forgot-password:hover {
+  color: #e67a00;
+  text-decoration: underline;
+}
+
+.login-btn1 {
+  width: 100%;
+  padding: 16px;
+  background-color: #ff8a00;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 20px;
+}
+
+.login-btn1:hover {
+  background-color: #e67a00;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 25px 0;
+  width: 100%;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: #eee;
+}
+
+.divider span {
+  padding: 0 15px;
+  color: #999;
+  font-size: 14px;
+}
+
+.google-login-wrapper {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.register-link {
+  margin-top: 20px;
+  color: #666;
+  font-size: 15px;
+}
+
+.register-link a {
+  color: #ff8a00;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+/* Alert стилдери */
+.alert-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.alert-box {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+}
+
+.alert-box.success {
+  border-top: 4px solid #4CAF50;
+}
+
+.alert-box.error {
+  border-top: 4px solid #ff4444;
+}
+
+.alert-box.info {
+  border-top: 4px solid #2196F3; 
+}
+
+.alert-message {
+  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.alert-ok-btn {
+  background-color: #ff8a00;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.alert-ok-btn:hover {
+  background-color: #e67a00;
+}
+
+/* Коопсуздук */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.password-input {
+  width: 100%;
+  padding: 14px 45px 14px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  padding: 5px;
+}
+
+.toggle-password:hover {
+  color: #333;
+}
+
+/* Сурот стили */
+.food-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 20px 20px 0;
+}
+
+/* Responsive стилдер */
+@media (max-width: 768px) {
+  .user-avatar-large,
+  .user-avatar-large-initials {
+    width: 100px;
+    height: 100px;
+    font-size: 40px;
+  }
+  
+  .user-name-profile {
+    font-size: 24px;
+  }
+  
+  .user-email-profile {
+    font-size: 14px;
+  }
+  
+  .login-title {
+    font-size: 28px;
+  }
+  
+  .clean-input,
+  .password-input {
+    padding: 12px;
+    font-size: 15px;
+  }
+  
+  .login-btn1 {
+    padding: 14px;
+    font-size: 16px;
+  }
+}
+
+/* === IMAGE FULL HALF FIX === */
+.login-container {
+  height: 100%;
+}
+
+.login-right {
+  width: 50%;
+  height: 100%;
+}
+
+.login-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+
+
+
+
+/* === CLOSE BUTTON CLEAN === */
+.close-btn {
+  /* background:  #e67a00; */
+  /* border: none !important; */
+  color:  #e67a00;
+}
+/* 
+.close-btn:hover {
+  background: transparent !important;
+  color: #ff8a00;
+} */
+
+
+
+
+/* === LEFT ALIGN LOGIN TEXT === */
+.login-left {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.login-left h1 {
+  text-align: left;
+  width: 100%;
+}
+
+.login-left label {
+  text-align: left;
+  width: 100%;
+}
+
+
+
+
+
+
+/* === MOBILE IMAGE FIX === */
+@media (max-width: 768px) {
+  .login-right {
+    height: 300px;
+  }
+
+  .login-right img {
+    height: 100%;
+    object-fit: cover;
+  }
+}

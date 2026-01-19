@@ -1,0 +1,255 @@
+.contact-page {
+  min-height: 100vh;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60px;
+  font-family: serif;
+}
+
+.contact-title {
+  font-size: 48px;
+  margin-bottom: 16px;
+  color: #0a0a0a;
+}
+
+.contact-subtitle {
+  max-width: 600px;
+  text-align: center;
+  color: #505050;
+  margin-bottom: 50px;
+  font-size: 16px;
+}
+
+.contact-form {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.contact-row {
+  display: flex;
+  gap: 24px;
+}
+
+.contact-row input {
+  flex: 1;
+  padding: 18px 20px;
+  border-radius: 12px;
+  border: none;
+  background: #f5f5f5;
+  font-size: 16px;
+  outline: none;
+}
+
+.contact-form textarea {
+  min-height: 200px;
+  padding: 20px;
+  border-radius: 16px;
+  border: none;
+  background: #f5f5f5;
+  font-size: 16px;
+  resize: none;
+  outline: none;
+}
+
+.contact-form button {
+  margin: 40px auto 0;
+  padding: 16px 80px;
+  border-radius: 16px;
+  border: none;
+  background: #ff9500;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 149, 0, 0.3);
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-box {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-box p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.modal-box button {
+  background: #ff9500;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.modal-box button:hover {
+  background: #e68500;
+  transform: translateY(-2px);
+}
+
+
+
+/* =========================
+   📱 Tablet (≤992px)
+========================= */
+@media (max-width: 992px) {
+  .contact-page {
+    padding-top: 40px;
+  }
+
+  .contact-title {
+    font-size: 40px;
+  }
+
+  .contact-subtitle {
+    max-width: 500px;
+    font-size: 15px;
+    margin-bottom: 40px;
+  }
+
+  .contact-form {
+    max-width: 700px;
+    gap: 20px;
+  }
+
+  .contact-row {
+    gap: 16px;
+  }
+
+  .contact-row input,
+  .contact-form textarea {
+    padding: 16px 16px;
+    font-size: 15px;
+  }
+
+  .contact-form button {
+    padding: 14px 60px;
+    font-size: 16px;
+  }
+}
+
+/* =========================
+   📱 Phone (≤768px)
+========================= */
+@media (max-width: 768px) {
+  .contact-page {
+    padding-top: 30px;
+  }
+
+  .contact-title {
+    font-size: 32px;
+  }
+
+  .contact-subtitle {
+    max-width: 100%;
+    padding: 0 16px;
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+
+  .contact-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .contact-row input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 14px 12px;
+    font-size: 14px;
+  }
+
+  .contact-form button {
+    padding: 12px 50px;
+    font-size: 15px;
+  }
+}
+
+/* =========================
+   📱 Small phone (≤480px)
+========================= */
+@media (max-width: 480px) {
+  .contact-page {
+    padding-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .contact-title {
+    font-size: 28px;
+  }
+
+  .contact-subtitle {
+    font-size: 13px;
+    margin-bottom: 20px;
+    padding: 0;
+  }
+
+  .contact-form {
+    gap: 16px;
+  }
+
+  .contact-row {
+    gap: 12px;
+  }
+
+  .contact-row input,
+  .contact-form textarea {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .contact-form button {
+    padding: 12px 40px;
+    font-size: 14px;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .modal-box {
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  .modal-box p {
+    font-size: 16px;
+  }
+
+  .modal-box button {
+    padding: 10px 25px;
+    font-size: 14px;
+  }
+}

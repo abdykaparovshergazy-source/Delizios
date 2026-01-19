@@ -1,0 +1,774 @@
+.reservation-wrapper {
+  max-width: 1600px;
+  margin: auto;
+  width: 100%;
+  height: 800px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 0 60px;
+  box-sizing: border-box;
+}
+
+.image-side {
+  width: 300px;
+  height: 500px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.bg-circle {
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: #7e6a2e;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 1;
+}
+
+.outer-circle {
+  width: 490px;
+  height: 490px;
+  border-radius: 50%;
+  background: #f7f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+.outer-circle::before {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: #e6e5e5;
+    z-index: 1;
+}
+
+.inner-circle {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 3;
+}
+
+.inner-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.form-side {
+  flex: 1;
+  padding-left: 100px;
+}
+
+.form-side h1 {
+  font-size: 48px;
+  font-weight: 700;
+  color: #3a220d;
+  margin-bottom: 40px;
+  font-family: Georgia, serif;
+}
+
+
+.input-box {
+  width: 320px;
+  height: 58px;
+  background: #f6f6f6;
+  border-radius: 14px;
+  margin-bottom: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 18px;
+  color: #a9a9a9;
+  font-size: 16px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+.party-box {
+  position: relative;
+}
+
+.input-box i {
+  font-size: 13px;
+}
+
+.btn {
+  width: 320px;
+  height: 58px;
+  background: #ff9c07;
+  border-radius: 14px;
+  margin-top: 18px;
+  color: white;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #e28700;
+}
+.real-input {
+  border: none;
+  outline: none;
+  background: #f6f6f6;
+  font-size: 16px;
+  color: #555;
+  font-family: inherit;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.arrow.rotate {
+  transform: rotate(180deg);
+}
+
+.hidden-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.party-box {
+  position: relative;
+}
+
+.select-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+/* RESERVATION SUCCESS MODAL STYLES */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7); /* Караңгы фон */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000; /* Жогорку z-index */
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  pointer-events: auto;
+}
+
+.modal-overlay.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal {
+  background: white;
+  padding: 40px 50px;
+  border-radius: 24px;
+  min-width: 400px;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: modalAppear 0.4s ease-out;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes modalAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal h2 {
+  margin-bottom: 25px;
+  color: #2e7d32;
+  font-size: 28px;
+  font-weight: 700;
+  font-family: Georgia, serif;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #e8f5e9;
+}
+
+.modal p {
+  margin: 12px 0;
+  color: #444;
+  font-size: 16px;
+  text-align: left;
+  padding-left: 10px;
+  border-left: 3px solid #ff9c07;
+}
+
+.modal p b {
+  color: #333;
+  font-weight: 600;
+  min-width: 100px;
+  display: inline-block;
+}
+
+.modal .btn {
+  width: 100%;
+  margin-top: 30px;
+  background: linear-gradient(135deg, #ff9c07 0%, #e28700 100%);
+  font-size: 18px;
+  font-weight: 600;
+  padding: 16px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 156, 7, 0.3);
+}
+
+.modal .btn:hover {
+  background: linear-gradient(135deg, #e28700 0%, #c57200 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 156, 7, 0.4);
+}
+
+/* ERROR MODAL STYLES */
+.modal-overlay .modal h2:contains("Error") {
+  color: #d32f2f;
+  border-bottom: 2px solid #ffebee;
+}
+
+.modal-overlay .modal p {
+  border-left: 3px solid #d32f2f;
+}
+
+
+
+
+
+
+
+
+
+@media (max-width: 992px) {
+  .reservation-wrapper {
+    flex-direction: column;
+    height: auto;
+    padding: 40px 20px;
+  }
+
+  .image-side,
+  .form-side {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 30px;
+  }
+
+  .image-side {
+    height: 400px;
+  }
+
+  .bg-circle {
+    width: 400px;
+    height: 400px;
+    top: 0;
+    left: 0;
+  }
+
+  .outer-circle {
+    width: 360px;
+    height: 360px;
+  }
+
+  .inner-circle {
+    width: 240px;
+    height: 240px;
+  }
+
+  .form-side h1 {
+    font-size: 36px;
+  }
+
+  .input-box,
+  .btn {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+
+@media (max-width: 576px) {
+  .reservation-wrapper {
+    padding: 20px 10px;
+    min-height: auto;
+  }
+
+  .image-side {
+    height: 300px;
+    margin-bottom: 20px;
+  }
+
+  .bg-circle {
+    width: 300px;
+    height: 300px;
+  }
+
+  .outer-circle {
+    width: 260px;
+    height: 260px;
+  }
+
+  .inner-circle {
+    width: 180px;
+    height: 180px;
+  }
+
+  .form-side {
+    padding-left: 0;
+  }
+
+  .form-side h1 {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .input-box,
+  .btn {
+    width: 100%;
+    font-size: 14px;
+    height: 50px;
+  }
+
+  .modal {
+    min-width: 90%;
+    max-width: 350px;
+    padding: 30px 25px;
+  }
+
+  .success-modal-content {
+    min-width: 90%;
+    max-width: 350px;
+    padding: 40px 25px 30px;
+  }
+
+  .error-modal {
+    min-width: 90%;
+    max-width: 320px;
+    padding: 30px 20px;
+  }
+
+  .modal h2 {
+    font-size: 24px;
+  }
+
+  .modal p {
+    font-size: 14px;
+  }
+
+  .detail-label,
+  .detail-value {
+    font-size: 13px;
+  }
+
+  .reservation-details {
+    padding: 15px;
+  }
+
+  .confirmation-message {
+    font-size: 13px;
+    padding: 12px;
+  }
+}
+
+
+
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-15px) rotate(5deg) scale(1.02);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+}
+
+
+@keyframes rotateSlow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+@keyframes scalePulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+}
+
+
+.outer-circle {
+  animation: rotateSlow 40s linear infinite; 
+}
+
+.outer-circle::before {
+  animation: rotateSlow 60s linear infinite reverse;
+}
+
+.inner-circle {
+  animation: float 6s ease-in-out infinite, scalePulse 6s ease-in-out infinite;
+}
+
+.inner-circle img {
+  animation: float 6s ease-in-out infinite;
+}
+ 
+
+
+
+
+
+
+
+
+/* Логин статусун көрсөтүүчү стилдер */
+.login-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #c8e6c9;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.1);
+}
+
+.user-info-display {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.logged-in-text {
+  font-size: 12px;
+  color: #666;
+}
+
+.user-name {
+  color: #2e7d32;
+  font-size: 16px;
+}
+
+.user-email {
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+}
+
+.logout-btn-small {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(255, 107, 107, 0.3);
+}
+
+.logout-btn-small:hover {
+  background: #ff4757;
+  transform: scale(1.1);
+}
+
+/* Book now кнопкасынын логин статусу боюнча стилдери */
+.btn {
+  width: 320px;
+  height: 58px;
+  background: #ff9c07;
+  border-radius: 14px;
+  margin-top: 18px;
+  color: white;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 600;
+}
+
+.btn:hover {
+  background: #e28700;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 156, 7, 0.3);
+}
+
+
+
+
+
+
+
+
+/* ENHANCED MODAL STYLES */
+.success-modal {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
+}
+
+.success-modal-content {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 2px solid #4CAF50;
+  position: relative;
+  min-width: 450px;
+  padding: 50px 40px 40px;
+}
+
+.error-modal {
+  background: linear-gradient(135deg, #ffffff 0%, #fff8f8 100%);
+  border: 2px solid #ff6b6b;
+  min-width: 400px;
+  padding: 40px;
+}
+
+.modal-icon {
+  font-size: 60px;
+  margin-bottom: 20px;
+  animation: bounceIn 0.6s ease-out;
+}
+
+.error-icon {
+  font-size: 50px;
+  color: #ff6b6b;
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.reservation-details {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 25px 0;
+  border-left: 4px solid #4CAF50;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #333;
+  font-size: 15px;
+}
+
+.detail-value {
+  color: #555;
+  font-size: 15px;
+  text-align: right;
+  max-width: 250px;
+  word-break: break-word;
+}
+
+.confirmation-message {
+  font-style: italic;
+  color: #666;
+  margin: 20px 0;
+  text-align: center;
+  padding: 15px;
+  background: #f0f9ff;
+  border-radius: 10px;
+  border-left: 4px solid #2196F3;
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #999;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+}
+
+.close-modal-btn:hover {
+  color: #ff6b6b;
+  background: #fff5f5;
+  transform: rotate(90deg);
+}
+
+.modal-btn {
+  width: 100%;
+  padding: 16px;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.error-btn {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff4757 100%);
+}
+
+.error-btn:hover {
+  background: linear-gradient(135deg, #ff4757 0%, #ff3838 100%);
+}
+
+/* Ensure modal is on top of everything */
+.modal-overlay {
+  z-index: 99999 !important;
+}
+
+
+
+
+
+
+
+
+
+
+/* Guest names талаасынын стилдери */
+.input-box {
+  position: relative;
+}
+
+.auto-filled-hint {
+  position: absolute;
+  bottom: -18px;
+  left: 10px;
+  font-size: 11px;
+  color: #4CAF50;
+  background: #e8f5e9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid #c8e6c9;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.real-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  color: #333;
+  font-family: inherit;
+}
+
+.real-input:focus {
+  color: #000;
+}
+
+/* Егер Guest names аккаунт ат менен толтурулган болсо */
+.real-input.auto-filled {
+  color: #4CAF50;
+  font-weight: 500;
+}
+
+/* Clear button для Guest names талаасы */
+.clear-names-btn {
+  position: absolute;
+  right: 40px;
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.clear-names-btn:hover {
+  background: #f5f5f5;
+  color: #ff6b6b;
+}
