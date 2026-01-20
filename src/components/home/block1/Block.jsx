@@ -1,5 +1,5 @@
 import React from 'react'
-import './b.css'
+import './block.css'
 import foodImg from '../../../assets/1.png'
 import { useNavigate } from 'react-router-dom'
 
