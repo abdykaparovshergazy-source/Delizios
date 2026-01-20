@@ -16,20 +16,7 @@ function Login({ open, onClose, onLogin }) {
   const [alertType, setAlertType] = useState("success");
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // Checkout үчүн функция
-  const handleQuickCheckout = () => {
-    if (isLoggedIn && loggedInUser) {
-      return {
-        fullName: loggedInUser.name,
-        email: loggedInUser.email,
-        phone: "",
-        address: "",
-        paymentMethod: "cash"
-      };
-    }
-    return null;
-  };
+  const [justLoggedIn, setJustLoggedIn] = useState(false);
 
   const showAlert = (message, type = "success") => {
     setAlertMessage(message);
@@ -52,7 +39,6 @@ function Login({ open, onClose, onLogin }) {
         const user = JSON.parse(savedUser);
         setLoggedInUser(user);
         setIsLoggedIn(true);
-        console.log("Автоматтык түрдө логинделди:", user.name);
       } catch (error) {
         console.error("Пользовательские данные повреждены:", error);
         localStorage.clear();
@@ -89,7 +75,8 @@ function Login({ open, onClose, onLogin }) {
       email: email,
       provider: "email",
       id: Date.now().toString(),
-      avatar: `https://ui-avatars.com/api/?name=${email.split("@")[0]}&background=ff8a00&color=fff`
+      avatar: `https://ui-avatars.com/api/?name=${email.split("@")[0]}&background=ff8a00&color=fff`,
+      isNewLogin: true // Жаңы логин белгиси
     };
 
     localStorage.setItem("token", "demo-token-" + Date.now());
@@ -99,6 +86,7 @@ function Login({ open, onClose, onLogin }) {
 
     setLoggedInUser(userData);
     setIsLoggedIn(true);
+    setJustLoggedIn(true);
 
     showAlert(`Добро пожаловать, ${userData.name}! ✅`, "success");
 
@@ -142,7 +130,8 @@ function Login({ open, onClose, onLogin }) {
         provider: "google",
         id: userData.sub,
         avatar: userData.picture || `https://ui-avatars.com/api/?name=${userData.name}&background=4285F4&color=fff`,
-        token: credentialResponse.credential
+        token: credentialResponse.credential,
+        isNewLogin: true // Жаңы логин белгиси
       };
 
       localStorage.setItem("token", credentialResponse.credential);
@@ -154,6 +143,7 @@ function Login({ open, onClose, onLogin }) {
 
       setLoggedInUser(googleUser);
       setIsLoggedIn(true);
+      setJustLoggedIn(true);
 
       showAlert(`Добро пожаловать, ${googleUser.name}! 👋`, "success");
 
@@ -186,6 +176,7 @@ function Login({ open, onClose, onLogin }) {
 
     setLoggedInUser(null);
     setIsLoggedIn(false);
+    setJustLoggedIn(false);
     setPassword("");
 
     showAlert("Вы успешно вышли из системы 👋", "info");
@@ -208,19 +199,21 @@ function Login({ open, onClose, onLogin }) {
             <h3>{loggedInUser.name}</h3>
             <p>{loggedInUser.email}</p>
             <small>Вход через: {loggedInUser.provider === "google" ? "Google" : "Email"}</small>
+            
+            {/* Туташтырылгандыгынын билдиргичи */}
+            {justLoggedIn && (
+              <div className="connection-status">
+                <span className="connection-badge">✓ Аккаунт туташтырылды</span>
+                <p className="connection-message">Сиз ийгиликтүү туташтырылдыңыз!</p>
+              </div>
+            )}
           </div>
         </div>
         <div className="profile-buttons">
-          <button className="logout-btn" onClick={handleLogout}>Выйти</button>
-          <button 
-            className="switch-account-btn" 
-            onClick={() => {
-              handleLogout();
-              // Форма кайра көрүнөт, анткени isLoggedIn false болот
-            }}
-          >
-            Сменить аккаунт
+          <button className="continue-btn" onClick={onClose}>
+            Улантуу
           </button>
+          <button className="logout-btn" onClick={handleLogout}>Выйти</button>
         </div>
       </div>
     );
@@ -255,7 +248,6 @@ function Login({ open, onClose, onLogin }) {
             type="button"
             className={`toggle-password ${showPassword ? 'show' : ''}`}
             onClick={() => {
-              console.log('Коз басылды!', showPassword);
               setShowPassword(!showPassword);
             }}
             aria-label={showPassword ? "Hide password" : "Show password"}
@@ -323,10 +315,8 @@ function Login({ open, onClose, onLogin }) {
 
         <div className="login-container">
           <div className="login-left">
-            {/* Эгер логинделген болсо, профилди гана көрсөт */}
-            {/* Эгер логинделбесе, логин формасын гана көрсөт */}
             {isLoggedIn && loggedInUser ? renderUserProfile() : renderLoginForm()}
-            <p className="copyright">Copyright © 2022 Delizioso</p>
+            <p className="copyright1">Copyright © 2022 Delizioso</p>
           </div>
           <div className="login-right">
             <img src={food} alt="food" />

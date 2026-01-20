@@ -155,19 +155,19 @@
 .eye-icon {
   width: 20px;
   height: 20px;
-  stroke: #4b4b4b;
+  stroke: #4b4b4b !important;
   fill: transparent;
   transition: stroke 0.2s ease;
 }
 
-.toggle-password:hover .eye-icon {
+/* .toggle-password:hover .eye-icon {
   stroke: #ff8a00;
 }
 
-/* show классу кошулганда */
+
 .toggle-password.show .eye-icon {
   stroke: #ff8a00;
-}
+} */
 
 .options {
   margin-top: 10px;
@@ -231,25 +231,46 @@
   width: 22px;
 }
 
-.copyright {
+.copyright1 {
   margin-top: auto;
   color: #b4b4b4;
-  font-size: 13px;
-  padding-top: 5px;
+  font-size: 8px;
+  padding-top: 15px;
   margin: auto;
 }
+
+/* ====== СУРАТТЫ ТОЛУК ЖАРЫМГА ТОЛТУРУУ ====== */
+
+.modal-box.large-modal {
+  display: flex;
+  flex-direction: row;
+  width: 1000px;
+  max-width: 95%;
+  max-height: 90vh;
+}
+/* ====== СУРӨТТҮН АК ФОНДУН ТОЛУК ЖОК КЫЛУУ ====== */
 
 .login-right {
   width: 50%;
   height: 100%;
+  overflow: hidden;      /* Сурот сыртка чыкпасын */
+  padding: 0;            /* Бул эң маанилүү! */
+  margin: 0;
+  background: transparent;
 }
 
 .login-right img {
   width: 100%;
-  height: 656px;
-  max-height: 656px;
-  object-fit: cover;
+  height: 100%;
+  object-fit: cover;     /* Бош орун калтырбай толтурат */
+  object-position: center;
+  display: block;
+  border-radius: 0;      /* Ак рамка болбошу үчүн */
 }
+
+
+
+
 
 
 .hidden-input {
@@ -816,12 +837,12 @@
 }
 
 /* Сурот стили */
-.food-image {
+/* .food-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 0 20px 20px 0;
-}
+} */
 
 /* Responsive стилдер */
 @media (max-width: 768px) {
@@ -924,4 +945,248 @@
     height: 100%;
     object-fit: cover;
   }
+}
+
+
+
+
+.toggle-password {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.eye-icon {
+  width: 20px;
+  height: 20px;
+  stroke: #444 !important;
+  fill: none !important;
+  display: block;
+}
+
+
+.toggle-password,
+.toggle-password:hover,
+.toggle-password:active,
+.toggle-password:focus {
+  transform: none !important;
+  outline: none !important;
+}
+
+
+
+
+
+
+/* ====== PASSWORD (КӨЗ) СТИЛДЕРИ - ТАЗА ВАРИАНТ ====== */
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.password-input {
+  width: 100%;
+  padding: 14px 45px 14px 14px; /* Оң жагына орун */
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  background: #f7f7f7;
+  font-size: 15px;
+  box-sizing: border-box;
+  font-family: inherit;
+  line-height: normal;
+}
+
+.password-input:not([type="password"]) {
+  -webkit-text-security: none;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 14px;
+
+  top: 0;
+  bottom: 0;
+  margin: auto;
+
+  width: 24px;
+  height: 24px;
+
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.eye-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+  stroke: #444;
+  fill: none;
+}
+
+
+
+/* Туташтырылгандык статусу үчүн стилдер */
+.connection-status {
+  margin-top: 15px;
+  padding: 12px;
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  border-radius: 10px;
+  color: white;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.connection-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.connection-badge:before {
+  content: "✓";
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.connection-message {
+  margin: 8px 0 0 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Профиль кнопкалары */
+.profile-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.continue-btn {
+  flex: 1;
+  padding: 12px;
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.continue-btn:hover {
+  background: linear-gradient(135deg, #45a049, #3d8b40);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.logout-btn {
+  flex: 1;
+  padding: 12px;
+  background: linear-gradient(135deg, #ff4444, #cc0000);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.logout-btn:hover {
+  background: linear-gradient(135deg, #cc0000, #b30000);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+}
+
+/* Жаңы логин анимациясы */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Туташтырылган аватар */
+.user-avatar.connected {
+  animation: pulse 2s ease-in-out;
+  border: 3px solid #4CAF50;
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.4);
+}
+
+/* Карзинадагы логин статусу */
+.login-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  border-radius: 8px;
+  margin: 10px 0;
+  animation: slideIn 0.5s ease-out;
+}
+
+.login-status-indicator span {
+  font-weight: 600;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Хедердеги логин статусу */
+.header-login-status {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  animation: fadeIn 0.5s ease-out;
+  z-index: 100;
 }

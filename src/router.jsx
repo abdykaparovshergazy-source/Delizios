@@ -4,7 +4,7 @@ import Home from "./components/home/Home";
 import Menu from "./components/menu/Menu";
 import About from "./components/about us/About";
 import Contact from "./components/contact us/Contact";
-import Reservation from "./components/Reservation/Reservation";
+import Reservation from "./components/reservation/reservation1/Reservation1";
 
 export const myRouter = (cartItems, setCartItems, user, handleLogin, handleLogout) =>
   createBrowserRouter([

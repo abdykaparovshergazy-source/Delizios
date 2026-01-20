@@ -8,7 +8,7 @@ function Reservation() {
   const [time, setTime] = useState("");
   const [people, setPeople] = useState("");
   const [names, setNames] = useState(""); 
-  const [initialNamesSet, setInitialNamesSet] = useState(false); // Жаңы state
+  const [initialNamesSet, setInitialNamesSet] = useState(false); 
 
   const [open, setOpen] = useState({
     date: false,
