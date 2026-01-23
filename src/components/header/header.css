@@ -1,70 +1,232 @@
+/* ===== HEADER ===== */
 .header {
-  position: sticky; /* же fixed, каалаганыңды танда */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000; /* башка элементтердин үстүндө болуу үчүн */
-  background-color: white; /* фонду көрсөтүү, оригинал менен дал келтирүү */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* кичине көлөкө кошуу */
-  max-width: 1600px;
-  margin: auto;
-  height: 100px;
+  height: 90px;
+  background: #fff;
+  z-index: 1000;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 40px;
+  padding: 0 32px;
   font-family: Arial, sans-serif;
 }
 
-.logo {
-  padding-left: 80px;
+
+/* Container */
+.header .container {
+  max-width: 1600px;
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+  padding: 0 20px;
 }
 
-.circle {
-  width: 45px;
-  height: 45px;
-  background: orange;
-  border-radius: 50%;
+.logo {
   display: flex;
-  justify-content: center;
   align-items: center;
+  gap: 12px;
+  margin-left: 80px; /* солго жабышат */
+}
+
+
+.circle {
+  width: 44px;
+  height: 44px;
+  background: #ff8a00;
+  border-radius: 50%;
   color: white;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
 .logo h2 {
-  font-size: 19px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 700;
+  color: #222;
 }
 
 .logo h2 span {
-  color: orange;
-  font-weight: bold;
+  color: #ff8a00;
 }
 
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.circle:hover {
+  transform: rotate(360deg) scale(1.1);
+  box-shadow: 0 6px 20px rgba(255, 138, 0, 0.4);
+}
+
+/* Nav Links */
 .nav-links {
   display: flex;
-  gap: 80px;
+  gap: 85px;
   list-style: none;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .nav-links li a {
   text-decoration: none;
   color: #444;
-  transition: color 0.3s;
+  padding: 6px 0;
+  transition: all 0.3s ease;
 }
 
-.nav-links li a:hover,
-.nav-links li a:focus {
-  color: orange;
+.nav-links li a:hover {
+  color: #ff8a00;
 }
 
-/* Mobile Menu Toggle Button */
+/* Right block */
+.right-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-right: 80px; /* оңго жабышат */
+}
+
+/* Cart */
+.cart-box {
+  position: relative;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #f8f8f8;
+}
+
+.cart-box:hover {
+  background: #ff8a00;
+  transform: scale(1.1);
+}
+
+.cart-icon {
+  font-size: 20px;
+  color: #333;
+}
+
+/* Badge */
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: linear-gradient(135deg, #ff4444, #cc0000);
+  color: white;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(255, 68, 68, 0.4);
+  border: 2px solid white;
+}
+
+/* Login Button */
+.login-btn {
+  background: linear-gradient(135deg, #ff8a00, #ff6b00);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 138, 0, 0.3);
+}
+
+.login-btn:hover {
+  background: linear-gradient(135deg, #ff6b00, #ff8a00);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 138, 0, 0.4);
+}
+
+/* User profile */
+.user-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+  border-radius: 25px;
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.user-profile-header:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-avatar-header {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ff8a00;
+}
+
+.avatar-circle-initials {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ff8a00;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+  border: 2px solid #ff8a00;
+}
+
+.user-name-header {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+  white-space: nowrap;
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.logout-btn-header {
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+}
+
+.logout-btn-header:hover {
+  background-color: #cc0000;
+  transform: translateY(-1px);
+}
+
+/* Mobile menu button */
 .mobile-menu-toggle {
   display: none;
   background: none;
@@ -103,244 +265,145 @@
   transform: rotate(-45deg) translate(7px, -7px);
 }
 
-.right-block {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding-right: 80px;
-}
 
-.cart-box {
-  position: relative;
-  /* background: #f6f6f6; */
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cart-icon {
-  font-size: 20px;
-  color: #333;
-}
-
-.badge {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  background: red;
-  color: white;
-  font-size: 10px;
-  padding: 2px 6px;
-  border-radius: 50%;
-}
-
-.login-btn {
-  background: #2ea538;
-  color: white;
-  border: none;
-  padding: 10px 25px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.2s;
-}
-
-.login-btn:hover {
-  background: #248a2e;
-}
-
-
+/* ===== RESPONSIVE ===== */
 @media (max-width: 992px) {
-  .header {
-    height: 90px;
-    padding: 0 30px;
-  }
-
-  .logo {
-    padding-left: 40px;
-    gap: 15px;
-  }
-
-  .circle {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-  }
-
-  .logo h2 {
-    font-size: 18px;
-  }
-
   .nav-links {
-    gap: 40px;
-    font-size: 13px;
-  }
-
-  .right-block {
-    gap: 15px;
-    padding-right: 40px;
-  }
-
-  .login-btn {
-    padding: 8px 20px;
-    font-size: 13px;
-  }
-}
-
-@media (max-width: 768px) {
-  .header {
-    flex-wrap: wrap;
-    height: auto;
-    min-height: 80px;
-    padding: 15px 20px;
-    position: relative;
-  }
-
-  .mobile-menu-toggle {
-    display: block;
-    order: 2;
-  }
-
-  .logo {
-    padding-left: 0;
-    gap: 10px;
-    order: 1;
-    flex: 1;
-  }
-
-  .right-block {
-    padding-right: 0;
-    gap: 10px;
-    order: 3;
-  }
-
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: white;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 20px;
-    gap: 15px;
-    margin-top: 0;
-    width: 100%;
-    z-index: 999;
-  }
-
-  .nav-links.mobile-open {
-    display: flex;
-    animation: slideDown 0.3s ease-out;
-  }
-
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .nav-links li {
-    width: 100%;
-  }
-
-  .nav-links li a {
-    display: block;
-    padding: 12px 0;
-    font-size: 16px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .nav-links li:last-child a {
-    border-bottom: none;
-  }
-
-  .circle {
-    width: 35px;
-    height: 35px;
-    font-size: 16px;
-  }
-
-  .logo h2 {
-    font-size: 16px;
+    gap: 35px;
+    font-size: 14px;
   }
 
   .login-btn {
     padding: 8px 16px;
     font-size: 13px;
   }
+
+  .right-block {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    height: 80px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+  }
+
+  .header .container {
+    flex-wrap: wrap;
+    padding: 12px 16px;
+    position: relative;
+  }
+
+  .logo {
+    order: 1;
+    flex: 1;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+    order: 2;
+    margin-left: auto;
+  }
+
+  .right-block {
+    order: 3;
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    padding: 25px 20px;
+    gap: 0;
+    width: 100%;
+    z-index: 999;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
+
+  .nav-links.mobile-open {
+    display: flex;
+    animation: slideDown 0.4s ease;
+  }
+
+  .nav-links li {
+    width: 100%;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .nav-links li:last-child {
+    border-bottom: none;
+  }
+
+  .nav-links li a {
+    display: block;
+    padding: 15px 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  .nav-links li a:hover {
+    color: #b6afa7;
+    padding-left: 10px;
+  }
+
+  .circle {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+    margin-left: -60px;
+  }
+
+  .user-name-header {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {
   .header {
-    padding: 12px 15px;
-    min-height: 70px;
+    height: 75px;
   }
 
-  .logo {
-    gap: 8px;
-  }
-
-  .circle {
-    width: 30px;
-    height: 30px;
-    font-size: 14px;
-  }
-
-  .logo h2 {
-    font-size: 14px;
+  .header .container {
+    padding: 10px 12px;
   }
 
   .nav-links {
-    padding: 15px;
-    gap: 10px;
+    top: 75px;
+    padding: 20px 15px;
   }
 
-  .nav-links li a {
-    font-size: 15px;
-    padding: 10px 0;
-  }
-
-  .right-block {
-    gap: 8px;
+  .cart-box {
+    width: 38px;
+    height: 38px;
   }
 
   .cart-img {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
   }
 
-  .user-profile-header {
-    padding: 4px 6px;
-    gap: 6px;
-  }
-
-  .user-avatar-header {
-    width: 28px;
-    height: 28px;
-  }
-
-  .user-name-header {
-    font-size: 12px;
-    max-width: 50px;
-  }
-
-  .logout-btn-header {
-    padding: 4px 8px;
-    font-size: 11px;
+  .badge {
+    width: 20px;
+    height: 20px;
+    top: -3px;
+    right: -3px;
+    font-size: 10px;
   }
 
   .login-btn {
-    padding: 6px 12px;
+    padding: 8px 16px;
     font-size: 12px;
   }
 }
@@ -348,272 +411,85 @@
 
 
 
+/* ===== HEADER FIXES ===== */
 
-
-
-
-
-
-
-
-
-
-/* Колдонуучу профили үчүн стилдер */
-.user-profile-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-left: 10px;
-  padding: 5px 10px;
-  background: #f8f9fa;
-  border-radius: 20px;
-  border: 1px solid #ddd;
+/* 1) Бош орунду жок кылуу */
+html, body {
+  margin: 0;
+  padding: 0;
 }
 
-.user-avatar-header {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.user-name-header {
-  font-size: 14px;
-  font-weight: 500;
-  color: #333;
-}
-
-.logout-btn-header {
-  background: #ff4444;
-  color: white;
-  border: none;
-  padding: 4px 10px;
-  border-radius: 10px;
-  font-size: 12px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.logout-btn-header:hover {
-  background: #cc0000;
-}
-
-/* Right block үчүн флекс стили */
-.right-block {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-/* Логин кнопкасы үчүн стилдер */
-.login-btn {
-  background: #ff9800;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.login-btn:hover {
-  background: #f57c00;
-}
-
-
-.cart-box {
-  position: relative;
-  cursor: pointer;
-}
-
-.cart-img {
-  width: 30px;
-  height: 30px;
-}
-
-.badge {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background: #ff4444;
-  color: white;
-  font-size: 12px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-/* header.css файлына кошуңуз */
-
-/* User profile header стилдери */
-.user-profile-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 5px 10px;
-  border-radius: 25px;
-  background-color: #f8f8f8;
-  border: 1px solid #e0e0e0;
-  transition: all 0.3s ease;
-}
-
-.user-profile-header:hover {
-  background-color: #f0f0f0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Аватар стилдери */
-.user-avatar-header {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #ff8a00;
-}
-
-/* Инициалдар үчүн аватар стили */
-.avatar-circle-initials {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #ff8a00;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 16px;
-  border: 2px solid #ff8a00;
-}
-
-/* Колдонуучунун аты */
-.user-name-header {
-  font-weight: 600;
-  color: #333;
-  font-size: 14px;
-  white-space: nowrap;
-  max-width: 80px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Logout баскычы */
-.logout-btn-header {
-  background-color: #ff4444;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 600;
-  transition: background-color 0.3s;
-  white-space: nowrap;
-}
-
-.logout-btn-header:hover {
-  background-color: #cc0000;
-  transform: translateY(-1px);
-}
-
-/* Log in баскычы */
-.login-btn {
-  background-color: #ff8a00;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 14px;
-  transition: background-color 0.3s;
-}
-
-.login-btn:hover {
-  background-color: #e67a00;
-}
-
-/* Right block - cart and user */
-.right-block {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.cart-box {
-  position: relative;
-  cursor: pointer;
-}
-
-.cart-img {
-  width: 30px;
-  height: 30px;
-}
-
-.badge {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background-color: #ff4444;
-  color: white;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-/* Responsive стилдер */
+/* 2) Mobile менюни Home’го жакын кылуу (сеникинде туура иштеши үчүн) */
 @media (max-width: 768px) {
-  .user-profile-header {
-    padding: 5px 8px;
-    gap: 8px;
+  .header .container {
+    padding: 10px 12px;
   }
-  
-  .user-name-header {
-    max-width: 60px;
-    font-size: 12px;
+
+  .logo {
+    order: 1;
+    flex: 0;
   }
-  
-  .logout-btn-header {
-    padding: 5px 10px;
-    font-size: 11px;
+
+  .mobile-menu-toggle {
+    display: block;
+    order: 2;
+    margin-left: 8px; /* Home’го жакын кылуу үчүн */
   }
-  
-  .avatar-circle-initials,
-  .user-avatar-header {
-    width: 35px;
-    height: 35px;
-    font-size: 14px;
+
+  .right-block {
+    order: 3;
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+  /* меню ачылганда home’го туура келип турушу үчүн */
+  .nav-links {
+    top: 80px;
   }
 }
 
-@media (max-width: 480px) {
-  .user-name-header {
-    display: none; /* Кичинекей экрандарда атын жашыруу */
-  }
-  
-  .user-profile-header {
-    gap: 5px;
-    padding: 5px;
+
+
+
+
+
+
+
+
+
+
+/* ===== HEADER FIX FIXES ===== */
+
+/* 1) Header үстүндөгү бош орунду жок кылуу */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* 2) Delizioso сөзүн бир сапта кылуу */
+.logo h2 {
+  white-space: nowrap;   /* сөздү бир сапта кармоо */
+  line-height: 1;        /* саптын бийиктигин азайтуу */
+  font-size: 20px;
+}
+
+/* 3) Logo ичиндеги боштукту азайтуу */
+.logo {
+  gap: 8px;              /* 12px -> 8px кылып азайтуу */
+  white-space: nowrap;
+  margin-right: 40px;
+}
+
+/* 4) Header ички боштуктары */
+.header {
+  padding: 0 10px;       /* боштукту азайтуу */
+}
+
+/* 5) Mobileда дагы Delizioso бөлүнбөсүн */
+@media (max-width: 768px) {
+  .logo h2 {
+    font-size: 18px;
   }
 }

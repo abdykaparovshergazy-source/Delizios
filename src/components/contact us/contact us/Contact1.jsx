@@ -10,8 +10,10 @@ function Contact1() {
     message: ''
   });
 
-  const [modalOpen, setModalOpen] = useState(false); // Модалдык окно үчүн
-  const [modalMessage, setModalMessage] = useState(''); // Модалга чыгаруучу текст
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+
+  const whatsappNumber = "996552411160"; // <-- бул жерге сенин WhatsApp номериңди жаз
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,12 +25,29 @@ function Contact1() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
 
-    // Модалдык окно ачуу
-    setModalMessage('Thank you for contacting us!');
+    const fullName = `${formData.firstName} ${formData.lastName}`.trim();
+
+    // WhatsApp үчүн текст даярдоо
+    const whatsappText = `
+New Contact Message:
+Name: ${fullName}
+Email: ${formData.email}
+Subject: ${formData.subject}
+Message: ${formData.message}
+    `.trim();
+
+    // WhatsApp URL (URL encode)
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
+
+    // WhatsApp ачуу
+    window.open(whatsappURL, '_blank');
+
+    // Модал ачуу
+    setModalMessage('Your message has been sent via WhatsApp!');
     setModalOpen(true);
 
+    // Форманы тазалоо
     setFormData({
       firstName: '',
       lastName: '',
@@ -54,6 +73,7 @@ function Contact1() {
             name="firstName"
             value={formData.firstName}
             onChange={handleChange}
+            required
           />
           <input
             type="text"
@@ -61,6 +81,7 @@ function Contact1() {
             name="lastName"
             value={formData.lastName}
             onChange={handleChange}
+            required
           />
         </div>
 
@@ -71,6 +92,7 @@ function Contact1() {
             name="email"
             value={formData.email}
             onChange={handleChange}
+            required
           />
           <input
             type="text"
@@ -78,6 +100,7 @@ function Contact1() {
             name="subject"
             value={formData.subject}
             onChange={handleChange}
+            required
           />
         </div>
 
@@ -86,6 +109,7 @@ function Contact1() {
           name="message"
           value={formData.message}
           onChange={handleChange}
+          required
         ></textarea>
 
         <button type="submit">Submit</button>

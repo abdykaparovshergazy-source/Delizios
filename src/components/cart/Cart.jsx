@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import "./cart.css";
 
-function Cart({ open, onClose, items, setCartItems, user }) {
-  const [orderSuccess, setOrderSuccess] = useState(false);
+function Cart({ open, onClose, items, setCartItems }) {
   const [showCheckoutForm, setShowCheckoutForm] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     address: "",
     phone: "",
-    paymentMethod: "cash"
   });
 
   if (!open) return null;
@@ -35,91 +33,44 @@ function Cart({ open, onClose, items, setCartItems, user }) {
     0
   );
 
-  const initializeFormWithUserData = () => {
-    if (user) {
-      setFormData({
-        fullName: user.name || "",
-        email: user.email || "",
-        address: "",
-        phone: "",
-        paymentMethod: "cash"
-      });
-    }
-  };
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const phoneNumber = "996552411160"; 
 
-  const handleCheckout = () => {
+  const handleSendWhatsApp = () => {
     if (items.length === 0) return;
-    
-  
-    if (!user) {
-      setShowLoginModal(true);
-      return;
-    }
 
-    initializeFormWithUserData();
-    setShowCheckoutForm(true);
-  };
+    const message = encodeURIComponent(`
+    *New Order*
+    -----------------------
+    Name: ${formData.fullName}
+    Email: ${formData.email}
+    Phone: ${formData.phone}
+    Address: ${formData.address}
 
-  const handleConfirmOrder = (e) => {
-    e.preventDefault();
+    Items:
+    ${items.map(i => `${i.title} x${i.qty} - ${i.price}\nImage: ${i.image}`).join("\n")}
 
-    console.log("Order details:", {
-      ...formData,
-      items: items,
-      total: total,
-      userId: user?.id || null
-    });
+    -----------------------
+    Total: $${total.toFixed(2)}
+  `);
 
-    setOrderSuccess(true);
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=996552411160&text=${message}`;
+    window.open(whatsappUrl, "_blank");
+
     setCartItems([]);
-    setShowCheckoutForm(false);
-
-    setFormData({
-      fullName: "",
-      email: "",
-      address: "",
-      phone: "",
-      paymentMethod: "cash"
-    });
-
-    setTimeout(() => {
-      setOrderSuccess(false);
-      onClose();
-    }, 3000);
+    onClose();
   };
 
-  const handleLoginClose = () => {
-    setShowLoginModal(false);
-  };
-
-  const handleLoginSuccess = (userData) => {
-    setShowLoginModal(false);
-
-    if (userData) {
-      setFormData({
-        fullName: userData.name || "",
-        email: userData.email || "",
-        address: "",
-        phone: "",
-        paymentMethod: "cash"
-      });
-      setShowCheckoutForm(true);
-    }
-  };
 
   return (
     <>
       <div className="cart-overlay" onClick={onClose}>
         <div className="cart-modal" onClick={e => e.stopPropagation()}>
+
           <div className="cart-header">
             <h2>Your Cart</h2>
             <span className="close" onClick={onClose}>✕</span>
@@ -148,10 +99,7 @@ function Cart({ open, onClose, items, setCartItems, user }) {
                     </div>
                   </div>
 
-                  <div
-                    className="cart-remove"
-                    onClick={() => removeItem(item.id)}
-                  >
+                  <div className="cart-remove" onClick={() => removeItem(item.id)}>
                     ✕
                   </div>
                 </div>
@@ -166,126 +114,76 @@ function Cart({ open, onClose, items, setCartItems, user }) {
                 <strong>${total.toFixed(2)}</strong>
               </div>
 
-              <button className="checkout-btn" onClick={handleCheckout}>
-                {user ? `Checkout as ${user.name}` : "Checkout"}
+              <button
+                className="checkout-btn"
+                onClick={() => setShowCheckoutForm(true)}
+              >
+                Checkout
               </button>
-              
-              {!user && (
-                <div className="login-prompt">
-                  <small>Please login for faster checkout</small>
-                </div>
-              )}
             </div>
           )}
-
 
           {showCheckoutForm && (
             <div className="checkout-form">
               <h3>Checkout Information</h3>
-              <form onSubmit={handleConfirmOrder}>
-                <div className="form-group">
-                  <label htmlFor="fullName">Full Name *</label>
-                  <input
-                    type="text"
-                    id="fullName"
-                    name="fullName"
-                    value={formData.fullName}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="Enter your full name"
-                  />
-                </div>
 
-                <div className="form-group">
-                  <label htmlFor="email">Email *</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="your@email.com"
-                    disabled={!!user} 
-                  />
-                  {user && (
-                    <small className="field-note">Email from your account (can't be changed)</small>
-                  )}
-                </div>
+              <div className="form-group">
+                <label>Full Name</label>
+                <input
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  placeholder="Your full name"
+                  required
+                />
+              </div>
 
-                <div className="form-group">
-                  <label htmlFor="phone">Phone Number *</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="+996 XXX XXX XXX"
-                  />
-                </div>
+              <div className="form-group">
+                <label>Email</label>
+                <input
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="your@email.com"
+                  required
+                />
+              </div>
 
-                <div className="form-group">
-                  <label htmlFor="address">Delivery Address *</label>
-                  <textarea
-                    id="address"
-                    name="address"
-                    value={formData.address}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="Enter your full address"
-                    rows="3"
-                  />
-                </div>
+              <div className="form-group">
+                <label>Phone</label>
+                <input
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder="+996 XXX XXX XXX"
+                  required
+                />
+              </div>
 
-                <div className="form-group">
-                  <label htmlFor="paymentMethod">Payment Method</label>
-                  <select
-                    id="paymentMethod"
-                    name="paymentMethod"
-                    value={formData.paymentMethod}
-                    onChange={handleInputChange}
-                  >
-                    <option value="cash">Cash on Delivery</option>
-                    <option value="card">Credit Card</option>
-                    <option value="online">Online Payment</option>
-                  </select>
-                </div>
+              <div className="form-group">
+                <label>Address</label>
+                <input
+                  name="address"
+                  value={formData.address}
+                  onChange={handleInputChange}
+                  placeholder="Your address"
+                  required
+                />
+              </div>
 
-                <div className="checkout-form-buttons">
-                  <button 
-                    type="button" 
-                    className="back-btn"
-                    onClick={() => setShowCheckoutForm(false)}
-                  >
-                    Back to Cart
-                  </button>
-                  <button type="submit" className="confirm-order-btn">
-                    Confirm Order (${total.toFixed(2)})
-                  </button>
-                </div>
-              </form>
+              <div className="checkout-form-buttons">
+                <button className="back-btn" onClick={() => setShowCheckoutForm(false)}>
+                  Back to Cart
+                </button>
+                <button className="confirm-order-btn" onClick={handleSendWhatsApp}>
+                  Send via WhatsApp
+                </button>
+              </div>
             </div>
           )}
 
-    
-          {orderSuccess && (
-            <div className="order-confirmed">
-              ✅ Order successfully placed!
-            </div>
-          )}  
         </div>
       </div>
-
-    
-      {showLoginModal && (
-        <Login 
-          open={showLoginModal} 
-          onClose={handleLoginClose}
-          onLogin={handleLoginSuccess}
-        />
-      )}
     </>
   );
 }

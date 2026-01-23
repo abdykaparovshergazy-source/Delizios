@@ -1,0 +1,25 @@
+.layout-wrapper {
+  padding-top: 100px; /* Отступ для фиксированного header */
+  min-height: 100vh;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .layout-wrapper {
+    padding-top: 90px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .layout-wrapper {
+    padding-top: 80px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .layout-wrapper {
+    padding-top: 75px;
+  }
+}

@@ -2,10 +2,14 @@ import "./header.css";
 import surot from '../../assets/карзина.png';
 import { Link } from 'react-router-dom';
 import { useState } from "react";
+import Login from "../login/Login";
+
 
 function Header({ cartItems, setCartItems, user, onLogout, onLogin, openCart }) {
   const totalQty = cartItems.reduce((sum, item) => sum + item.qty, 0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -46,27 +50,34 @@ function Header({ cartItems, setCartItems, user, onLogout, onLogin, openCart }) 
           </div>
 
           {user ? (
-            <div className="user-profile-header">
-              <img 
-                src={user.avatar} 
-                alt={user.name} 
+            <div
+              className="user-profile-header"
+              onClick={() => setProfileOpen(true)}
+              style={{ cursor: "pointer" }}
+            >
+              <img
+                src={user.avatar}
+                alt={user.name}
                 className="user-avatar-header"
               />
               <span className="user-name-header">{user.name}</span>
-              <button 
-                className="logout-btn-header" 
-                onClick={onLogout}
-              >
-                Logout
-              </button>
             </div>
           ) : (
             <button className="login-btn" onClick={onLogin}>
               Log in
             </button>
           )}
+
         </div>
       </div>
+
+      <Login
+        open={profileOpen}
+        onClose={() => setProfileOpen(false)}
+        onLogin={onLogin}
+        onLogout={onLogout}
+      />
+
     </>
   );
 }

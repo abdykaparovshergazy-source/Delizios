@@ -4,7 +4,7 @@ import food from "../../assets/Login.png";
 import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import LoginModal from "../loginModal/LoginModal";
 
-function Login({ open, onClose, onLogin }) {
+function Login({ open, onClose, onLogin, onLogout }) {
   if (!open) return null;
 
   const [email, setEmail] = useState("");
@@ -108,7 +108,7 @@ function Login({ open, onClose, onLogin }) {
         try {
           const base64Url = token.split('.')[1];
           const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-          const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+          const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
             return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
           }).join(''));
           return JSON.parse(jsonPayload);
@@ -164,29 +164,23 @@ function Login({ open, onClose, onLogin }) {
     showAlert("Не удалось войти через Google ❌", "error");
   };
 
-  const handleLogout = () => {
-    if (loggedInUser?.provider === "google") googleLogout();
+const handleLogout = () => {
+  if (loggedInUser?.provider === "google") googleLogout();
 
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    localStorage.removeItem("loginMethod");
-    localStorage.removeItem("lastLogin");
+  localStorage.removeItem("user");
+  localStorage.removeItem("token");
+  localStorage.removeItem("loginMethod");
+  localStorage.removeItem("lastLogin");
 
-    if (!remember) localStorage.removeItem("rememberEmail");
+  setLoggedInUser(null);
+  setIsLoggedIn(false);
+  setJustLoggedIn(false);
 
-    setLoggedInUser(null);
-    setIsLoggedIn(false);
-    setJustLoggedIn(false);
-    setPassword("");
+  if (onLogout) onLogout(); // 👈 Layout → App
+  onClose();               // 👈 Modal жабылат
+};
 
-    showAlert("Вы успешно вышли из системы 👋", "info");
 
-    if (onLogin) onLogin(null);
-
-    setTimeout(() => {
-      setAlertOpen(false);
-    }, 1500);
-  };
 
   const renderUserProfile = () => {
     if (!isLoggedIn || !loggedInUser) return null;
@@ -199,7 +193,7 @@ function Login({ open, onClose, onLogin }) {
             <h3>{loggedInUser.name}</h3>
             <p>{loggedInUser.email}</p>
             <small>Вход через: {loggedInUser.provider === "google" ? "Google" : "Email"}</small>
-            
+
             {/* Туташтырылгандыгынын билдиргичи */}
             {justLoggedIn && (
               <div className="connection-status">
@@ -211,7 +205,7 @@ function Login({ open, onClose, onLogin }) {
         </div>
         <div className="profile-buttons">
           <button className="continue-btn" onClick={onClose}>
-            Улантуу
+            Продолжить
           </button>
           <button className="logout-btn" onClick={handleLogout}>Выйти</button>
         </div>

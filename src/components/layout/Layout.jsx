@@ -4,6 +4,7 @@ import Footer from '../footer/Footer'
 import { Outlet } from 'react-router-dom'
 import Cart from '../cart/Cart'
 import Login from '../login/Login'
+import './Layout.css'
 
 function Layout({ cartItems, setCartItems, user, onLogin, onLogout }) {
 
@@ -25,24 +26,24 @@ function Layout({ cartItems, setCartItems, user, onLogin, onLogout }) {
   }
 
   return (
-    <div>
+    <div className="layout-wrapper">
       <Header
         cartItems={cartItems}
         setCartItems={setCartItems}
         user={user}
         onLogout={onLogout}
         onLogin={() => setLoginOpen(true)}
-        openCart={() => setCartOpen(true)} 
+        openCart={() => setCartOpen(true)}
       />
-      
-      <Outlet context={{ 
+
+      <Outlet context={{
         openCart: () => setCartOpen(true),
         user: user,
         onLogin: () => setLoginOpen(true)
       }} />
-      
+
       <Footer />
-      
+
       {/* Cart модалы */}
       <Cart
         open={cartOpen}
@@ -52,12 +53,13 @@ function Layout({ cartItems, setCartItems, user, onLogin, onLogout }) {
         user={user}
         onLogin={handleCartLogin}
       />
-      
+
       {/* Login модалы */}
       <Login
         open={loginOpen}
         onClose={() => setLoginOpen(false)}
         onLogin={handleLoginSuccess}
+        onLogout={onLogout}   // 👈 МААНИЛҮҮ
       />
     </div>
   )

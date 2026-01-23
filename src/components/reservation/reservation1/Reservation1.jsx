@@ -7,8 +7,8 @@ function Reservation() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [people, setPeople] = useState("");
-  const [names, setNames] = useState(""); 
-  const [initialNamesSet, setInitialNamesSet] = useState(false); 
+  const [names, setNames] = useState("");
+  const [initialNamesSet, setInitialNamesSet] = useState(false);
 
   const [open, setOpen] = useState({
     date: false,
@@ -28,21 +28,21 @@ function Reservation() {
 
   const [hideError, setHideError] = useState(false);
 
-  // Логин статусун текшерүү функциясы
+  const phoneNumber = "996552411160"; // WhatsApp номер
+
   const checkLoginStatus = useCallback(() => {
     const token = localStorage.getItem("token");
     const userStr = localStorage.getItem("user");
-    
+
     if (token && userStr) {
       try {
         const userData = JSON.parse(userStr);
         setIsLoggedIn(true);
         setUserInfo(userData);
-        
-        // Guest names алдын ала толтуруу - бир гана жолу
+
         if (userData.name && !names && !initialNamesSet) {
           setNames(userData.name);
-          setInitialNamesSet(true); // Бир жолу гана толтурулганын белгилөө
+          setInitialNamesSet(true);
         }
       } catch (error) {
         localStorage.removeItem("token");
@@ -64,9 +64,11 @@ function Reservation() {
     checkLoginStatus();
   }, [checkLoginStatus, loginOpen]);
 
-  // Book now логикасы
+  const handleNamesChange = (e) => {
+    setNames(e.target.value);
+  };
+
   const handleBook = () => {
-    // Бардык талаалар толтурулганын текшерүү
     if (!date || !time || !people || !names) {
       setErrorOpen(true);
       setHideError(false);
@@ -76,39 +78,35 @@ function Reservation() {
       return;
     }
 
-    // localStorage'дан логин статусун текшерүү
     const token = localStorage.getItem("token");
     const userStr = localStorage.getItem("user");
     const loggedIn = !!(token && userStr);
-    
+
     if (!loggedIn) {
       setLoginOpen(true);
     } else {
-      setSuccessOpen(true);
+      // Логин болсо WhatsAppка жөнөтөбүз
+      sendWhatsApp();
     }
   };
 
-  // Логин ийгиликтүү болгондо
   const handleLoginSuccess = (userData) => {
     setIsLoggedIn(true);
     setUserInfo(userData);
     setLoginOpen(false);
-    
-    // Guest names алдын ала толтуруу - бир гана жолу логинделгенде
+
     if (userData.name && !names) {
       setNames(userData.name);
       setInitialNamesSet(true);
     }
-    
-    // Логинден кийин автоматтык түрдө резервацияны ырастоо
-    if (date && time && people) {
+
+    if (date && time && people && names) {
       setTimeout(() => {
-        setSuccessOpen(true);
+        sendWhatsApp();
       }, 300);
     }
   };
 
-  // Логаут функциясы
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -117,17 +115,25 @@ function Reservation() {
     setIsLoggedIn(false);
     setUserInfo(null);
     setInitialNamesSet(false);
-    // Guest names талаасын тазалоо - optional
-    // setNames(""); 
   };
 
-  // Guest names талаасын өзгөрткөндө
-  const handleNamesChange = (e) => {
-    const value = e.target.value;
-    setNames(value);
-    
-    // Эгерде колдонуучу талааны өзү өзгөртсө, initialNamesSet'ти false кылуу керек эмес
-    // Анткени ал өзү каалаган атты жаза алат
+  const sendWhatsApp = () => {
+    const message = encodeURIComponent(`
+      *Reservation Request*
+      -----------------------
+      Date: ${date}
+      Time: ${time}
+      Party size: ${people}
+      Guest names: ${names}
+      -----------------------
+      ${isLoggedIn && userInfo ? `Booked by: ${userInfo.name}` : ""}
+    `);
+
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
+    window.open(whatsappUrl, "_blank");
+
+    // Ушул жерде reservation success модалын да чыгарып койсо болот
+    setSuccessOpen(true);
   };
 
   return (
@@ -142,28 +148,7 @@ function Reservation() {
 
       <div className="form-side">
         <h1>Book a table</h1>
-        
-        {/* Логин статусун көрсөтүүчү элемент */}
-        {/* {isLoggedIn && userInfo && (
-          <div className="login-status">
-            <div className="user-info-display">
-              <span className="logged-in-text">Logged in as:</span>
-              <strong className="user-name">{userInfo.name}</strong>
-              {userInfo.email && (
-                <span className="user-email">({userInfo.email})</span>
-              )}
-            </div>
-            <button 
-              className="logout-btn-small" 
-              onClick={handleLogout}
-              title="Logout"
-            >
-              ✕
-            </button>
-          </div>
-        )} */}
 
-        {/* DATE */}
         <div className="input-box">
           <span>{date || "Date"}</span>
           <i
@@ -187,7 +172,6 @@ function Reservation() {
           />
         </div>
 
-        {/* TIME */}
         <div className="input-box">
           <span>{time || "Time"}</span>
           <i
@@ -211,20 +195,14 @@ function Reservation() {
           />
         </div>
 
-        {/* PARTY SIZE */}
         <div className="input-box party-box">
           <span>{people || "Party size"}</span>
           <i className={open.people ? "arrow rotate" : "arrow"}>▼</i>
-
           <select
             className="select-overlay"
             value={people}
-            onFocus={() =>
-              setOpen({ date: false, time: false, people: true })
-            }
-            onBlur={() =>
-              setOpen({ date: false, time: false, people: false })
-            }
+            onFocus={() => setOpen({ date: false, time: false, people: true })}
+            onBlur={() => setOpen({ date: false, time: false, people: false })}
             onChange={(e) => {
               setPeople(e.target.value);
               setOpen({ date: false, time: false, people: false });
@@ -239,20 +217,14 @@ function Reservation() {
           </select>
         </div>
 
-        {/* GUEST NAMES - ТУУРА ВЕРСИЯ */}
         <div className="input-box">
           <input
             type="text"
             className="real-input"
             placeholder="Guest names"
-            // value={names}
+            value={names}
             onChange={handleNamesChange}
           />
-          {/* {isLoggedIn && userInfo && names === userInfo.name && (
-            <div className="auto-filled-hint">
-              <small>Auto-filled from your account</small>
-            </div>
-          )} */}
         </div>
 
         <button className="btn" onClick={handleBook}>
@@ -260,7 +232,6 @@ function Reservation() {
         </button>
       </div>
 
-      {/* LOGIN MODAL */}
       {loginOpen && (
         <Login
           open={loginOpen}
@@ -269,43 +240,14 @@ function Reservation() {
         />
       )}
 
-      {/* RESERVATION SUCCESS MODAL */}
       {successOpen && (
         <div className="modal-overlay success-modal" onClick={() => setSuccessOpen(false)}>
           <div className="modal success-modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-icon">✅</div>
             <h2>Reservation Confirmed</h2>
-            
-            <div className="reservation-details">
-              <div className="detail-row">
-                <span className="detail-label">Date:</span>
-                <span className="detail-value">{date}</span>
-              </div>
-              <div className="detail-row">
-                <span className="detail-label">Time:</span>
-                <span className="detail-value">{time}</span>
-              </div>
-              <div className="detail-row">
-                <span className="detail-label">Party Size:</span>
-                <span className="detail-value">{people} {people === "1" ? "person" : "people"}</span>
-              </div>
-              <div className="detail-row">
-                <span className="detail-label">Guests:</span>
-                <span className="detail-value">{names}</span>
-              </div>
-              {isLoggedIn && userInfo && (
-                <div className="detail-row">
-                  <span className="detail-label">Booked by:</span>
-                  <span className="detail-value">{userInfo.name}</span>
-                </div>
-              )}
-            </div>
-            
             <p className="confirmation-message">
-              Your table has been reserved successfully! 
-              We look forward to serving you.
+              Your reservation request has been sent via WhatsApp.
             </p>
-            
             <button
               className="btn modal-btn"
               onClick={() => {
@@ -313,34 +255,24 @@ function Reservation() {
                 setDate("");
                 setTime("");
                 setPeople("");
-                // Guest names талаасын тазалабоо
               }}
             >
               Done
             </button>
-            
-            <button 
-              className="close-modal-btn"
-              onClick={() => setSuccessOpen(false)}
-              aria-label="Close"
-            >
+            <button className="close-modal-btn" onClick={() => setSuccessOpen(false)} aria-label="Close">
               ×
             </button>
           </div>
         </div>
       )}
 
-      {/* ERROR MODAL */}
       {errorOpen && (
         <div className={`modal-overlay ${hideError ? "hide" : ""}`}>
           <div className="modal error-modal" onClick={(e) => e.stopPropagation()}>
             <div className="modal-icon error-icon">⚠️</div>
             <h2>Please Fill All Fields</h2>
             <p>All fields are required to make a reservation.</p>
-            <button 
-              className="btn modal-btn error-btn"
-              onClick={() => setErrorOpen(false)}
-            >
+            <button className="btn modal-btn error-btn" onClick={() => setErrorOpen(false)}>
               OK, I'll fill them
             </button>
           </div>
